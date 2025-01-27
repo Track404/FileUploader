@@ -6,6 +6,13 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>hello World</h1>
+    <% if (locals.sucessSend) {%>
+    <h1>file upload !</h1>
+
+    <% } %>
+    <form action="/file" method="post" enctype="multipart/form-data">
+      <input type="file" name="avatar" />
+      <button>Send</button>
+    </form>
   </body>
 </html>

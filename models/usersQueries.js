@@ -10,7 +10,6 @@ async function createUser(username, email, password) {
       password: password,
     },
   });
-  console.log(user);
   return user;
 }
 
@@ -20,7 +19,7 @@ async function findEmail(email) {
       email: email,
     },
   });
-  console.log(user);
+
   return user;
 }
 
@@ -30,7 +29,7 @@ async function findId(id) {
       id: id,
     },
   });
-  console.log(user);
+
   return user;
 }
 
