@@ -6,20 +6,13 @@
     <title>Document</title>
   </head>
   <body>
-    <% if (locals.sucessSend) {%>
-    <h1>file upload !</h1>
-
-    <% } %>
-    <form action="/file" method="post" enctype="multipart/form-data">
-      <input type="file" name="avatar" />
-      <button>Send</button>
-    </form>
-    <a href="/file/addfolder">Add a Folder</a>
-
+    <h1>Welcome <%= locals.username %></h1>
     <% if (locals.folders) {%>
+    <h2>Folders</h2>
     <ul>
       <% folders.forEach(function(folder) { %>
       <li>Name: <%= folder.name %></li>
+      <a href="/file/<%= folder.id %>/readfolder">Open</a>
       <a href="/file/<%= folder.id %>/updatefolder">Update</a>
       <form
         action="/file/<%= folder.id %>/deletefolder"
@@ -37,5 +30,6 @@
     </ul>
 
     <% } %>
+    <a href="/file/addfolder">Add a Folder</a>
   </body>
 </html>

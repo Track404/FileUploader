@@ -14,21 +14,21 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 async function getUpload(req, res) {
-  const folders = await query.findFolders();
-
-  res.render('message', {
+  const folders = await query.findOnefolder(Number(req.params.id));
+  console.log(folders);
+  res.render('addFile', {
     folders: folders,
   });
 }
 async function postUpload(req, res) {
   // req.file is the name of your file in the form above, here 'uploaded_file'
   // req.body will hold the text fields, if there were any
-  const folders = await query.findFolders();
+  const name = req.file.filename;
 
-  res.render('message', {
-    sucessSend: ' ',
-    folders: folders,
-  });
+  console.log(req.file.filename);
+  await query.createFile(name, Number(req.params.id));
+  const folder = await query.findOnefolderPosts(Number(req.params.id));
+  res.render('folderFiles', { folder: folder });
 }
 
 module.exports = {

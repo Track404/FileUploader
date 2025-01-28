@@ -23,10 +23,12 @@ dbRouter.post(
   })
 );
 
-dbRouter.get('/file', fileController.getUpload);
+dbRouter.get('/file', folderController.showFolders);
+
+dbRouter.get('/file/:id/addfile', fileController.getUpload);
 
 dbRouter.post(
-  '/file',
+  '/file/:id/addfile',
   fileController.upload.single('avatar'),
   fileController.postUpload
 );
@@ -36,4 +38,6 @@ dbRouter.post('/file/addfolder', folderController.postAddFoler);
 dbRouter.get('/file/:id/updatefolder', folderController.getUpdateFolder);
 dbRouter.post('/file/:id/updatefolder', folderController.postUpdateFolder);
 dbRouter.post('/file/:id/deletefolder', folderController.postDeleteFolder);
+dbRouter.get('/file/:id/readfolder', folderController.readFileFolder);
+
 module.exports = dbRouter;

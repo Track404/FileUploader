@@ -92,6 +92,28 @@ async function deleteFolder(id) {
   return folder;
 }
 
+async function findOnefolderPosts(id) {
+  const folder = await prisma.folder.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      files: true,
+    },
+  });
+  return folder;
+}
+
+async function createFile(name, folderId) {
+  const folder = await prisma.file.create({
+    data: {
+      filename: name,
+      folderId: folderId,
+    },
+  });
+
+  return folder;
+}
 module.exports = {
   createUser,
   findEmail,
@@ -101,4 +123,6 @@ module.exports = {
   findFolders,
   updateFolder,
   deleteFolder,
+  findOnefolderPosts,
+  createFile,
 };
