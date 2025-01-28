@@ -40,4 +40,7 @@ dbRouter.post('/file/:id/updatefolder', folderController.postUpdateFolder);
 dbRouter.post('/file/:id/deletefolder', folderController.postDeleteFolder);
 dbRouter.get('/file/:id/readfolder', folderController.readFileFolder);
 
+dbRouter.get('/file/:id/readfile', fileController.getShowFile);
+dbRouter.post('/file/:id/readfile', fileController.postShowFile);
+dbRouter.post('/file/:id/deletefile', fileController.postDeleteFile);
 module.exports = dbRouter;
