@@ -1,0 +1,22 @@
+<!-- views/updateUser.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Update Folder</h1>
+    <%- include("partials/errors.ejs") %>
+    <form action="/file/<%= folder.id %>/updatefolder" method="POST">
+      <input
+        type="text"
+        name="foldername"
+        value="<%= folder.name %>"
+        required
+      />
+
+      <button type="submit">Update Folder</button>
+    </form>
+    <a href="/file">Back to folder menu</a>
+  </body>
+</html>

@@ -1,3 +1,5 @@
+const query = require('../models/usersQueries');
+
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -11,16 +13,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+async function getUpload(req, res) {
+  const folders = await query.findFolders();
+
+  res.render('message', {
+    folders: folders,
+  });
+}
 async function postUpload(req, res) {
   // req.file is the name of your file in the form above, here 'uploaded_file'
   // req.body will hold the text fields, if there were any
-  console.log(req.file, req.body);
+  const folders = await query.findFolders();
+
   res.render('message', {
     sucessSend: ' ',
+    folders: folders,
   });
 }
 
 module.exports = {
   upload,
+  getUpload,
   postUpload,
 };

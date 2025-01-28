@@ -2,6 +2,7 @@ const { Router } = require('express');
 const signUpController = require('../controllers/signUpController');
 const loginController = require('../controllers/loginController');
 const fileController = require('../controllers/fileController');
+const folderController = require('../controllers/folderController');
 const passport = require('passport');
 const dbRouter = Router();
 
@@ -22,13 +23,17 @@ dbRouter.post(
   })
 );
 
-dbRouter.get('/file', (req, res) => {
-  res.render('message');
-});
+dbRouter.get('/file', fileController.getUpload);
 
 dbRouter.post(
   '/file',
   fileController.upload.single('avatar'),
   fileController.postUpload
 );
+
+dbRouter.get('/file/addfolder', folderController.getAddFolder);
+dbRouter.post('/file/addfolder', folderController.postAddFoler);
+dbRouter.get('/file/:id/updatefolder', folderController.getUpdateFolder);
+dbRouter.post('/file/:id/updatefolder', folderController.postUpdateFolder);
+dbRouter.post('/file/:id/deletefolder', folderController.postDeleteFolder);
 module.exports = dbRouter;
