@@ -104,10 +104,11 @@ async function findOnefolderPosts(id) {
   return folder;
 }
 
-async function createFile(name, folderId) {
+async function createFile(name, publicId, folderId) {
   const folder = await prisma.file.create({
     data: {
       filename: name,
+      publicId: publicId,
       folderId: folderId,
     },
   });
@@ -133,6 +134,10 @@ async function deleteFile(id) {
   return file;
 }
 
+async function deleteAllFile() {
+  const deleteUsers = await prisma.file.deleteMany({});
+  return deleteUsers;
+}
 module.exports = {
   createUser,
   findEmail,
@@ -146,4 +151,5 @@ module.exports = {
   createFile,
   findOnePost,
   deleteFile,
+  deleteAllFile,
 };
